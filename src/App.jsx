@@ -9,54 +9,71 @@ import Contact from './components/Contact'
 import { useEffect } from 'react';
 
 const App = () => {
-useEffect(() => {
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-      } else {
-        // Uncomment the next line if you want animation to repeat on scroll
-        entry.target.classList.remove('visible');
-      }
-    });
-  }, { threshold: 0.2 });
 
-  sections.forEach(section => observer.observe(section));
+  useEffect(() => {
+    const animatedEls = document.querySelectorAll('.section-inner');
 
-  return () => {
-    sections.forEach(section => observer.unobserve(section));
-  };
-}, []);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible'); // optional
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
- return (
-  <div>
-    <Nav/>
-    
-    <section className="fade-up">
-      <Home/>
-    </section>
+    animatedEls.forEach(el => observer.observe(el));
 
-    <section className="fade-right">
-      <About/>
-    
-      <Skills/>
-    </section>
+    return () => {
+      animatedEls.forEach(el => observer.unobserve(el));
+    };
+  }, []);
 
-    <section className="fade-up">
-      <Projects/>
-    </section>
+  return (
+    <div>
+      <Nav />
 
-    <section className="fade-right">
-      <Resume/>
-    </section>
+      {/* HOME */}
+      <section id="home">
+        <div className="section-inner fade-up">
+          <Home />
+        </div>
+      </section>
 
-    <section className="fade-left">
-      <Contact/>
-    </section>
-  </div>
-)
+      {/* ABOUT + SKILLS */}
+      <section id="about">
+        <div className="section-inner fade-right">
+          <About />
+          <Skills />
+        </div>
+      </section>
 
-}
+      {/* PROJECTS */}
+      <section id="projects">
+        <div className="section-inner fade-up">
+          <Projects />
+        </div>
+      </section>
 
-export default App
+      {/* EDUCATION / RESUME */}
+      <section id="eb">
+        <div className="section-inner fade-right">
+          <Resume />
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact">
+        <div className="section-inner fade-left">
+          <Contact />
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default App;

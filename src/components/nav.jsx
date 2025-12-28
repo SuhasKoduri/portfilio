@@ -1,11 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
 
-  // Close menu when a link is clicked
-  const handleLinkClick = () => {
+  // Lock background scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
+
+  const scrollToSection = (id) => {
+    // 1️⃣ Close menu first
     setOpen(false);
+
+    // 2️⃣ Wait for mobile layout to stabilize (CRITICAL)
+    setTimeout(() => {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 180); // DO NOT reduce on mobile
   };
 
   return (
@@ -14,11 +33,11 @@ const Nav = () => {
 
       {/* Navigation Links */}
       <div className={`nav-links ${open ? "open" : ""}`}>
-        <a href="#home" onClick={handleLinkClick}>Home</a>
-        <a href="#about" onClick={handleLinkClick}>About</a>
-        <a href="#projects" onClick={handleLinkClick}>Projects</a>
-        <a href="#eb" onClick={handleLinkClick}>Educational Background</a>
-        <a href="#contact" onClick={handleLinkClick}>Contact</a>
+        <span onClick={() => scrollToSection("home")}>Home</span>
+        <span onClick={() => scrollToSection("about")}>About</span>
+        <span onClick={() => scrollToSection("projects")}>Projects</span>
+        <span onClick={() => scrollToSection("eb")}>Educational Background</span>
+        <span onClick={() => scrollToSection("contact")}>Contact</span>
       </div>
 
       {/* Hamburger */}
@@ -30,7 +49,7 @@ const Nav = () => {
         </div>
       )}
 
-      {/* Close X */}
+      {/* Close Button */}
       {open && (
         <div className="close-btn" onClick={() => setOpen(false)}>
           ✕

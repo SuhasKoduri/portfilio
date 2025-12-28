@@ -17,21 +17,17 @@ body {
   color: #0f172a;
 }
 
-
-html {
-  scroll-behavior: smooth;
-}
-
-section {
+.section-inner {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-section.visible {
+.section-inner.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 /* ================= NAVBAR ================= */
 
@@ -54,7 +50,7 @@ section.visible {
   position: fixed; 
   top: 0;           
   left: 0;   
-  z-index: 1; 
+  z-index: 1000; 
 
 }
 
@@ -77,28 +73,36 @@ section.visible {
   gap: 26px;
 }
 
-.nav-links a {
+/* ================= NAV SPAN LINKS ================= */
+.nav-links span {
   position: relative;
   color: #e5e7eb;
-  text-decoration: none;
   font-size: 15px;
   padding: 6px 10px;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: color 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.3s ease;
 }
 
-/* Hover glow + color */
-.nav-links a:hover {
-  color: #020617;
-  background: linear-gradient(90deg, #38bdf8, #22d3ee);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
-  transform: translateY(-2px);
+/* ================= DESKTOP HOVER ONLY ================= */
+@media (hover: hover) and (pointer: fine) {
+  .nav-links span:hover {
+    color: #020617;
+    background: linear-gradient(90deg, #38bdf8, #22d3ee);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+    transform: translateY(-2px);
+  }
 }
 
-/* Click */
-.nav-links a:active {
+/* ================= CLICK FEEDBACK ================= */
+.nav-links span:active {
   transform: scale(0.95);
 }
+
+
 
 /* ================= HAMBURGER ================= */
 
@@ -157,6 +161,29 @@ section.visible {
     animation: dropdown 0.35s ease;
   }
 
+
+
+
+/* ===== DESKTOP HOVER ONLY ===== */
+@media (hover: hover) and (pointer: fine) {
+
+ 
+
+  button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
+  }
+
+  .card:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  .contact-icon a:hover {
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(34, 211, 238, 0.4);
+  }
+}
+
   .nav-links.open {
     display: flex;
   }
@@ -189,6 +216,9 @@ html {
   scroll-behavior: smooth;
 }
 
+html {
+  scroll-padding-top: 65px; /* navbar height */
+}
 
 
 
@@ -386,7 +416,7 @@ html {
   text-align: left;
   color: #334155;
   font-family: Arial, sans-serif;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 20px;
 }
 
@@ -894,15 +924,7 @@ body::before {
   pointer-events: none;
 }
 
-/* ===== BUTTON AND ICON HOVER ===== */
-button, .card, .contact-icon a {
-  transition: all 0.3s ease;
-}
 
-button:hover, .card:hover, .contact-icon a:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
-}
 
 /* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
