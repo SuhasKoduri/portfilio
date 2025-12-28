@@ -670,7 +670,7 @@ html {
 
 @media (max-width: 500px) {
   .cardcon .card {
-    height: 180px;
+    height: 230px;
   }
   .cardcon h1{
     text-align: center;
