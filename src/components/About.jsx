@@ -21,12 +21,9 @@ const About = () => {
         <h1>About Me</h1>
 
         <p>
-          I am a passionate MERN Stack Developer who loves turning creative ideas
-          into real-world web applications. I enjoy working on both front-end and
-          back-end development, building interactive UI, and ensuring optimal
-          performance. Beyond coding, I am constantly exploring new technologies,
-          improving my skills, and seeking opportunities to contribute to
-          meaningful projects.
+          A passionate MERN Stack Developer who enjoys creating efficient and interactive web applications.
+I work on both front-end and back-end development, focusing on building seamless user experiences.
+Constantly learning new technologies, I aim to enhance my skills and contribute to meaningful projects.
         </p>
 
         <button onClick={handleContactClick}>Contact Me</button>

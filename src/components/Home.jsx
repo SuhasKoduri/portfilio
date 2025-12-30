@@ -18,15 +18,7 @@ const Home = () => {
       <h1>Hello, I'm <span className="name">Koduri Sri Sai Suhas</span></h1>
       <h2>MERN Stack Developer | Full-Stack Web Enthusiast</h2>
       <p>
-        I am passionate about building scalable and efficient web applications
-        using MongoDB, Express, React, and Node.js. I enjoy creating interactive
-        user experiences and clean, maintainable code. My focus is on delivering
-        high-quality solutions that solve real-world problems.
-      </p>
-      <p>
-        Skilled in front-end development, RESTful APIs, and database management,
-        I strive to continuously learn new technologies and improve my craft.
-        Let's build something amazing together.
+        MERN Stack Developer building modern web applications with React, Express, and MongoDB. Skilled in HTML, CSS, JavaScript, MySQL, Postman, and GitHub, delivering responsive and efficient solutions.
       </p>
       <div>
         <a href={CV} target="_blank" rel="noopener noreferrer"><button>Download CV</button></a>
